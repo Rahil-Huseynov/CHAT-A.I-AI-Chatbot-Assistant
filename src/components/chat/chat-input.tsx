@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
-import { Brain, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ChatInputProps {
@@ -32,8 +32,8 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
     <div className="px-3 pb-4 pt-1.5 bg-[#F3F6FB] dark:bg-card">
       <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
         <div className="relative flex items-center bg-card rounded-full shadow-sm border border-border/30 overflow-hidden transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/30 gap-2">
-          <div className="absolute left-2 flex items-center pointer-events-none">
-            <Brain width={20}/>
+          <div className="absolute left-1 top-1 flex items-center pointer-events-none">
+            <img src="/brain.png" alt="brain" width={30} />
           </div>
 
           <textarea
