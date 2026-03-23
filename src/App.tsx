@@ -408,7 +408,7 @@ export default function App() {
   );
 
   return (
-    <div className="flex h-dvh bg-background overflow-hidden">
+      <div className="flex h-dvh bg-[#F3F6FB] dark:bg-[#0D111B] overflow-hidden">
       <ChatSidebar
         conversations={conversations}
         activeConversationId={activeConversationId}
@@ -421,7 +421,7 @@ export default function App() {
         onClose={() => setSidebarOpen(false)}
       />
 
-      <main className="flex-1 flex flex-col min-w-0 relative bg-card lg:m-2 lg:ml-0 lg:rounded-2xl overflow-hidden">
+        <main className="flex-1 flex flex-col min-w-0 relative bg-[#F3F6FB] dark:bg-[#0D111B] lg:m-2 lg:ml-0 lg:rounded-2xl overflow-hidden">
         <header className="flex items-center gap-2 p-3 lg:hidden border-b border-border/50">
           <Button
             variant="ghost"

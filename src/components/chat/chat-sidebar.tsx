@@ -102,13 +102,13 @@ export function ChatSidebar({
         />
       )}
 
-      <aside
-        className={cn(
-          "fixed lg:relative z-50 flex flex-col h-full w-[220px] transition-transform duration-300 ease-in-out rounded-r-2xl lg:rounded-2xl lg:m-2 lg:h-[calc(100%-16px)] shadow-sm",
-          "bg-white dark:bg-sidebar",
-          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-        )}
-      >
+    <aside
+  className={cn(
+    "fixed lg:relative z-50 flex flex-col h-full w-[220px] transition-transform duration-300 ease-in-out rounded-r-2xl lg:rounded-2xl lg:m-2 lg:h-[calc(100%-16px)]",
+    "bg-white dark:bg-[#0D111B]",
+    isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+  )}
+>
         <div className="p-3 pb-2.5">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-sm font-bold tracking-wide text-sidebar-foreground">
@@ -156,7 +156,7 @@ export function ChatSidebar({
           )}
         </div>
 
-        <div className="flex items-center justify-between px-3 mb-1.5 py-2  border-y border-[#E5E7EB]">
+        <div className="flex items-center justify-between px-3 mb-1.5 py-2 border-y border-[#E5E7EB]">
           <span className="text-[10px] text-muted-foreground font-medium">
             Your conversations
           </span>
@@ -171,10 +171,11 @@ export function ChatSidebar({
             Clear All
           </button>
         </div>
-        <ScrollArea className="flex-1 px-2">
+
+        <ScrollArea className="flex-1 pl-2 -mr-6">
           <div className="space-y-0.5">
             {recentConversations.length === 0 &&
-              olderConversations.length === 0 ? (
+            olderConversations.length === 0 ? (
               <div className="text-center py-6 text-muted-foreground text-xs">
                 No conversations yet
               </div>
@@ -283,7 +284,9 @@ export function ChatSidebar({
 
                 <div className="p-3 rounded-lg bg-muted/50">
                   <p className="text-xs font-medium mb-0.5">Language</p>
-                  <p className="text-[10px] text-muted-foreground">English (US)</p>
+                  <p className="text-[10px] text-muted-foreground">
+                    English (US)
+                  </p>
                 </div>
 
                 <div className="p-3 rounded-lg bg-muted/50">
@@ -293,6 +296,7 @@ export function ChatSidebar({
               </div>
             </DialogContent>
           </Dialog>
+
           <button className="flex items-center gap-2 w-full p-2 rounded-lg bg-card hover:bg-card/80 transition-colors shadow-sm">
             <Avatar className="size-6">
               <AvatarImage src="/avatar.jpg" alt="Andrew Neilson" />
@@ -335,14 +339,10 @@ function ConversationItem({
   onCancelEdit: () => void;
   isOlder?: boolean;
 }) {
-  const [isHovered, setIsHovered] = useState(false);
+
   if (isEditing) {
     return (
-      <div
-        className={cn(
-          "flex items-center gap-1.5 w-full p-2 rounded-lg bg-sidebar-accent shadow-sm"
-        )}
-      >
+      <div className="flex items-center gap-1.5 w-full px-3 py-2 rounded-full bg-[#F3F6FB] shadow-sm">
         <MessageCircle className="size-3 shrink-0 text-primary" />
         <input
           type="text"
@@ -382,13 +382,11 @@ function ConversationItem({
           onClick();
         }
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        "flex items-center gap-2 w-full p-2 rounded-lg text-left transition-all duration-200 group cursor-pointer",
+        "flex items-center gap-2 w-full pl-3 pr-1 py-2 text-left transition-all duration-200 cursor-pointer",
         isActive
-          ? "bg-sidebar-accent text-primary font-medium "
-          : "hover:bg-sidebar-accent/50",
+          ? "bg-[#F3F6FB] dark:bg-[#161B24] text-primary font-medium rounded-full"
+          : "rounded-lg",
         isOlder && !isActive && "opacity-50"
       )}
     >
@@ -398,20 +396,20 @@ function ConversationItem({
           isActive ? "text-primary" : "text-muted-foreground"
         )}
       />
+
       <span
         className={cn(
           "text-xs flex-1 truncate",
           isActive ? "text-primary" : "text-sidebar-foreground/80"
         )}
       >
-        {isActive && isHovered && conversation.title.length > 15
-          ? conversation.title.slice(0, 15) + "..."
-          : conversation.title.length > 20
-            ? conversation.title.slice(0, 20) + "..."
-            : conversation.title}
+        {conversation.title.length > 20
+          ? conversation.title.slice(0, 20) + "..."
+          : conversation.title}
       </span>
+
       {isActive && (
-        <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center gap-0.5 bg-[#EEF0FD] dark:bg-[#161B24] opacity-100 transition-opacity">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -421,6 +419,7 @@ function ConversationItem({
           >
             <Trash2 className="size-3 text-muted-foreground hover:text-destructive transition-colors" />
           </button>
+
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -430,7 +429,8 @@ function ConversationItem({
           >
             <Edit2 className="size-3 text-muted-foreground hover:text-foreground transition-colors" />
           </button>
-          <div className="size-1.5 rounded-full bg-primary ml-0.5" />
+
+          <img src="/eye.png" alt="eye" className="w-[30px]" />
         </div>
       )}
     </div>
