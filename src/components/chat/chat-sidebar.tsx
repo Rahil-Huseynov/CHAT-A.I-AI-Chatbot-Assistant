@@ -102,13 +102,13 @@ export function ChatSidebar({
         />
       )}
 
-    <aside
-  className={cn(
-    "fixed lg:relative z-50 flex flex-col h-full w-[220px] transition-transform duration-300 ease-in-out rounded-r-2xl lg:rounded-2xl lg:m-2 lg:h-[calc(100%-16px)]",
-    "bg-white dark:bg-[#0D111B]",
-    isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
-  )}
->
+      <aside
+        className={cn(
+          "fixed lg:relative z-50 flex flex-col h-full w-[220px] transition-transform duration-300 ease-in-out rounded-r-2xl lg:rounded-2xl lg:m-2 lg:h-[calc(100%-16px)]",
+          "bg-white dark:bg-[#0D111B]",
+          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+        )}
+      >
         <div className="p-3 pb-2.5">
           <div className="flex items-center justify-between mb-3">
             <h1 className="text-sm font-bold tracking-wide text-sidebar-foreground">
@@ -175,7 +175,7 @@ export function ChatSidebar({
         <ScrollArea className="flex-1 pl-2 -mr-6">
           <div className="space-y-0.5">
             {recentConversations.length === 0 &&
-            olderConversations.length === 0 ? (
+              olderConversations.length === 0 ? (
               <div className="text-center py-6 text-muted-foreground text-xs">
                 No conversations yet
               </div>
@@ -372,67 +372,68 @@ function ConversationItem({
   }
 
   return (
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick();
-        }
-      }}
-      className={cn(
-        "flex items-center gap-2 w-full pl-3 pr-1 py-2 text-left transition-all duration-200 cursor-pointer",
-        isActive
-          ? "bg-[#F3F6FB] dark:bg-[#161B24] text-primary font-medium rounded-full"
-          : "rounded-lg",
-        isOlder && !isActive && "opacity-50"
-      )}
-    >
-      <MessageCircle
+    <div className="flex items-center justify-center">
+      <div
+        role="button"
+        tabIndex={0}
+        onClick={onClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onClick();
+          }
+        }}
         className={cn(
-          "size-3 shrink-0",
-          isActive ? "text-primary" : "text-muted-foreground"
-        )}
-      />
-
-      <span
-        className={cn(
-          "text-xs flex-1 truncate",
-          isActive ? "text-primary" : "text-sidebar-foreground/80"
+          "flex items-center gap-2 w-full h-10 pl-3 pr-1 py-2 text-left transition-all duration-200 cursor-pointer",
+          isActive
+            ? "bg-[#F3F6FB] dark:bg-[#161B24] text-primary font-medium rounded-full"
+            : "rounded-lg",
+          isOlder && !isActive && "opacity-50"
         )}
       >
-        {conversation.title.length > 20
-          ? conversation.title.slice(0, 20) + "..."
-          : conversation.title}
-      </span>
+        <MessageCircle
+          className={cn(
+            "size-3 shrink-0",
+            isActive ? "text-primary" : "text-muted-foreground"
+          )}
+        />
 
-      {isActive && (
-        <div className="flex items-center gap-0.5 bg-[#EEF0FD] dark:bg-[#161B24] opacity-100 transition-opacity">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete();
-            }}
-            className="p-0.5 hover:bg-destructive/10 rounded"
-          >
-            <Trash2 className="size-3 text-muted-foreground hover:text-destructive transition-colors" />
-          </button>
+        <span
+          className={cn(
+            "text-xs flex-1 truncate",
+            isActive ? "text-primary" : "text-sidebar-foreground/80"
+          )}
+        >
+          {conversation.title.length > 18
+            ? conversation.title.slice(0, 18) + "..."
+            : conversation.title}
+        </span>
+      </div>
+        {isActive && (
+          <div className="flex items-center h-10 p-3 -ml-8 gap-0.5 bg-[#EEF0FD] dark:bg-[#161B24] opacity-100 transition-opacity rounded-full">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete();
+              }}
+              className="p-0.5 hover:bg-destructive/10 rounded"
+            >
+              <Trash2 className="size-3 text-muted-foreground hover:text-destructive transition-colors" />
+            </button>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onStartEdit();
-            }}
-            className="p-0.5 hover:bg-primary/10 rounded"
-          >
-            <Edit2 className="size-3 text-muted-foreground hover:text-foreground transition-colors" />
-          </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onStartEdit();
+              }}
+              className="p-0.5 hover:bg-primary/10 rounded"
+            >
+              <Edit2 className="size-3 text-muted-foreground hover:text-foreground transition-colors" />
+            </button>
 
-          <img src="/eye.png" alt="eye" className="w-[30px]" />
-        </div>
-      )}
-    </div>
+            <img src="/eye.png" alt="eye" className="w-[30px]" />
+          </div>
+        )}
+      </div>
   );
 }
