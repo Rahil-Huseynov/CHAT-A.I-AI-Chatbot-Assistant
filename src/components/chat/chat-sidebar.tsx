@@ -172,7 +172,7 @@ export function ChatSidebar({
           </button>
         </div>
 
-        <ScrollArea className="flex-1 pl-2 -mr-6">
+        <ScrollArea className="flex-1 pl-2 -mr-6 no-scrollbar overflow-y-auto overflow-x-hidden">
           <div className="space-y-0.5">
             {recentConversations.length === 0 &&
               olderConversations.length === 0 ? (
