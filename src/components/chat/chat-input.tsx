@@ -29,11 +29,11 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
   }, [message]);
 
   return (
-    <div className="px-3 pb-4 pt-1.5 bg-[#F3F6FB] dark:bg-card">
+    <div className="px-3 sm:px-4 pb-4 pt-1.5 bg-[#F3F6FB] dark:bg-card shrink-0">
       <form onSubmit={handleSubmit} className="relative max-w-2xl mx-auto">
         <div className="relative flex items-center bg-card rounded-full shadow-sm border border-border/30 overflow-hidden transition-all duration-200 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/30 gap-2">
-          <div className="absolute left-1 top-1 flex items-center pointer-events-none">
-            <img src="/brain.png" alt="brain" width={30} />
+          <div className="absolute left-1.5 sm:left-1 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+            <img src="/brain.png" alt="brain" className="w-6 sm:w-[30px]" />
           </div>
 
           <textarea
@@ -48,9 +48,9 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
             }}
             placeholder="What's in your mind?..."
             className={cn(
-              "flex-1 py-2.5 pl-9 pr-11 bg-transparent text-xs text-foreground",
+              "flex-1 py-3 sm:py-2.5 pl-10 sm:pl-11 pr-12 sm:pr-11 bg-transparent text-sm sm:text-xs text-foreground",
               "placeholder:text-muted-foreground/60 resize-none outline-none",
-              "min-h-[36px] max-h-[96px]"
+              "min-h-[44px] sm:min-h-[36px] max-h-[96px]"
             )}
             rows={1}
             disabled={disabled}
@@ -61,12 +61,12 @@ export function ChatInput({ onSendMessage, disabled }: ChatInputProps) {
             size="icon"
             disabled={!message.trim() || disabled}
             className={cn(
-              "absolute right-1.5 size-8 rounded-full transition-all duration-200",
+              "absolute right-1.5 size-9 sm:size-8 rounded-full transition-all duration-200",
               "bg-primary hover:bg-primary/90 hover:scale-105 active:scale-95 text-primary-foreground",
               "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
             )}
           >
-            <Send className="size-3" />
+            <Send className="size-4 sm:size-3" />
           </Button>
         </div>
       </form>

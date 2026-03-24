@@ -159,11 +159,29 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html, body, #root {
+    @apply h-full w-full overflow-hidden;
+  }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    -webkit-overflow-scrolling: touch;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
-button:hover{
-cursor: pointer;
+/* Prevent text selection on buttons for mobile */
+button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+/* Better touch targets on mobile */
+@media (max-width: 640px) {
+  input, textarea, button {
+    font-size: 16px; /* Prevents iOS zoom on focus */
+  }
 }

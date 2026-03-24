@@ -28,18 +28,18 @@ export function ChatArea({
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  return (
-    <ScrollArea className="flex-1 h-full bg-[#F3F6FB] dark:bg-card">
-      <div className="max-w-2xl mx-auto px-3 py-4">
+return (
+    <ScrollArea className="flex-1 min-h-0 bg-[#F3F6FB] dark:bg-card">
+      <div className="max-w-2xl mx-auto px-3 sm:px-4 py-4">
         {messages.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-[60vh] text-center animate-in fade-in duration-500">
-            <div className="size-12 rounded-full bg-primary/10 flex items-center justify-center mb-3 animate-in zoom-in duration-300">
-              <span className="text-lg font-bold text-primary">AI</span>
+          <div className="flex flex-col items-center justify-center min-h-[50vh] sm:h-[60vh] text-center px-4 animate-in fade-in duration-500">
+            <div className="size-14 sm:size-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 sm:mb-3 animate-in zoom-in duration-300">
+              <span className="text-xl sm:text-lg font-bold text-primary">AI</span>
             </div>
-            <h2 className="text-base font-semibold text-foreground mb-1.5 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
+            <h2 className="text-lg sm:text-base font-semibold text-foreground mb-2 sm:mb-1.5 animate-in fade-in slide-in-from-bottom-2 duration-300 delay-100">
               How can I help you today?
             </h2>
-            <p className="text-muted-foreground text-xs max-w-sm animate-in fade-in slide-in-from-bottom-2 duration-300 delay-200">
+            <p className="text-muted-foreground text-sm sm:text-xs max-w-sm animate-in fade-in slide-in-from-bottom-2 duration-300 delay-200">
               Ask me anything - I can help with coding, writing, analysis, math,
               and much more.
             </p>

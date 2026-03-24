@@ -407,8 +407,8 @@ export default function App() {
     [activeConversationId]
   );
 
-  return (
-      <div className="flex h-dvh bg-[#F3F6FB] dark:bg-[#0D111B] overflow-hidden">
+return (
+    <div className="flex h-dvh w-full bg-[#F3F6FB] dark:bg-[#0D111B] overflow-hidden">
       <ChatSidebar
         conversations={conversations}
         activeConversationId={activeConversationId}
@@ -421,15 +421,15 @@ export default function App() {
         onClose={() => setSidebarOpen(false)}
       />
 
-        <main className="flex-1 flex flex-col min-w-0 relative bg-[#F3F6FB] dark:bg-[#0D111B] lg:m-2 lg:ml-0 lg:rounded-2xl overflow-hidden">
-        <header className="flex items-center gap-2 p-3 lg:hidden border-b border-border/50">
+      <main className="flex-1 flex flex-col min-w-0 w-full relative bg-[#F3F6FB] dark:bg-[#0D111B] lg:m-2 lg:ml-0 lg:rounded-2xl overflow-hidden">
+        <header className="flex items-center gap-2 p-3 lg:hidden border-b border-border/50 shrink-0">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setSidebarOpen(true)}
-            className="size-7"
+            className="size-8"
           >
-            <Menu className="size-4" />
+            <Menu className="size-5" />
           </Button>
           <h1 className="text-sm font-bold tracking-wide">CHAT A.I+</h1>
         </header>

@@ -104,7 +104,7 @@ export function ChatSidebar({
 
       <aside
         className={cn(
-          "fixed lg:relative z-50 flex flex-col h-full w-[220px] transition-transform duration-300 ease-in-out rounded-r-2xl lg:rounded-2xl lg:m-2 lg:h-[calc(100%-16px)]",
+          "fixed lg:relative z-50 flex flex-col h-dvh lg:h-[calc(100%-16px)] w-[260px] sm:w-[220px] transition-transform duration-300 ease-in-out rounded-r-2xl lg:rounded-2xl lg:m-2",
           "bg-white dark:bg-[#0D111B]",
           isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
@@ -117,10 +117,10 @@ export function ChatSidebar({
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden size-6"
+              className="lg:hidden size-8"
               onClick={onClose}
             >
-              <X className="size-3" />
+              <X className="size-4" />
             </Button>
           </div>
 
@@ -196,6 +196,8 @@ export function ChatSidebar({
                     }
                     onSaveEdit={() => handleSaveEdit(conversation.id)}
                     onCancelEdit={() => setEditingId(null)}
+                    isOpen={isOpen}
+                    onClose={onClose}
                   />
                 ))}
 
@@ -223,6 +225,8 @@ export function ChatSidebar({
                         onSaveEdit={() => handleSaveEdit(conversation.id)}
                         onCancelEdit={() => setEditingId(null)}
                         isOlder
+                        isOpen={isOpen}
+                        onClose={onClose}
                       />
                     ))}
                   </>
@@ -326,6 +330,8 @@ function ConversationItem({
   onSaveEdit,
   onCancelEdit,
   isOlder,
+  isOpen,
+  onClose,
 }: {
   conversation: Conversation;
   isActive: boolean;
@@ -338,6 +344,8 @@ function ConversationItem({
   onSaveEdit: () => void;
   onCancelEdit: () => void;
   isOlder?: boolean;
+  isOpen: boolean;
+  onClose: () => void;
 }) {
 
   if (isEditing) {
@@ -409,31 +417,41 @@ function ConversationItem({
             : conversation.title}
         </span>
       </div>
-        {isActive && (
-          <div className="flex items-center h-10 p-3 -ml-8 gap-0.5 bg-[#EEF0FD] dark:bg-[#161B24] opacity-100 transition-opacity rounded-full">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete();
-              }}
-              className="p-0.5 hover:bg-destructive/10 rounded"
-            >
-              <Trash2 className="size-3 text-muted-foreground hover:text-destructive transition-colors" />
-            </button>
+      {isActive && (
+        <div
+          className={cn(
+            "flex items-center h-10 p-3 -ml-8 gap-0.5 bg-[#EEF0FD] dark:bg-[#161B24] transition-opacity rounded-full",
+            "lg:opacity-100",
+            isOpen ? "opacity-100" : "opacity-0 lg:opacity-100"
+          )}
+        >          <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onDelete();
+          }}
+          className="p-0.5 hover:bg-destructive/10 rounded"
+        >
+            <Trash2 className="size-3 text-muted-foreground hover:text-destructive transition-colors" />
+          </button>
 
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onStartEdit();
-              }}
-              className="p-0.5 hover:bg-primary/10 rounded"
-            >
-              <Edit2 className="size-3 text-muted-foreground hover:text-foreground transition-colors" />
-            </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onStartEdit();
+            }}
+            className="p-0.5 hover:bg-primary/10 rounded"
+          >
+            <Edit2 className="size-3 text-muted-foreground hover:text-foreground transition-colors" />
+          </button>
 
+          <button
+            onClick={onClose}
+            className="w-[30px]"
+          >
             <img src="/eye.png" alt="eye" className="w-[30px]" />
-          </div>
-        )}
-      </div>
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
